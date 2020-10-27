@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  address: "localhost"
+  servlet:
+    context-path: ""
+
+spring:
+  security:
+    user:
+      name: "admin"
+      password: "You shall not pass!"
+      roles: ["ACTUATOR"]
+  jackson:
+    date-format: "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+    time-zone: "UTC"
+
+management:
+  endpoints:
+    web:
+      base-path: "/actuator"
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when_authorized
+      roles: ["ACTUATOR"]
+
+logging:
+  pattern:
+    dateformat: "yyyy-MM-dd'T'HH:mm:ss.SSSXXX, UTC"
+  level:
+    root: warn
