@@ -12,12 +12,15 @@ resources:
     - repository: almtemplates
       type: git
       name: ALM/devops_pipelines
+    - repository: almtemplates_dev
+      type: git
+      name: Stack Team/devops_pipelines.robert.thornton
 
 
 stages:
   - stage: Build
     jobs:
-      - template: templates/java-mvn-build.yml@almtemplates
+      - template: templates/java-mvn-build.yml@almtemplates_dev
         parameters:
-          AppName: "spring-boot-demo"
-          Portfolio: "ESM"
+          AppName: spring-boot-demo
+          Portfolio: ESM
