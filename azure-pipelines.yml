@@ -17,7 +17,7 @@ resources:
 stages:
   - stage: Build
     jobs:
-      - template: templates/azure-java-mvn.yml@almtemplates
+      - template: templates/java-mvn-build.yml@almtemplates
         parameters:
           AppName: "spring-boot-demo"
           Portfolio: "ESM"
