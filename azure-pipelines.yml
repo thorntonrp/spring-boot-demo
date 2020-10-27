@@ -22,5 +22,23 @@ stages:
     jobs:
       - template: templates/java-mvn-build.yml@almtemplates_dev
         parameters:
+          # Always
           AppName: spring-boot-demo
           Portfolio: ESM
+          # Often
+          JavaVersion: 11
+          MavenPomFile: pom.kts
+          MavenPomPath: .
+          MavenGoal: clean verify
+          #RunMavenSonarScan: true
+          #DownloadSecureFile: false
+          #RunArtifactoryUpload: true
+          # Rarely
+          # RunDependencyUpdate: false
+          # targetResolveReleaseRepo: mvn
+          # targetResolveSnapshotRepo: mvn
+          # targetDeployReleaseRepo: mvn-local-ics-releases
+          # targetDeploySnapshotRepo: mvn-local-ics-snapshots
+          # SonarServiceConnection: ALM Sonar
+          # ArtifactoryServiceConnection: ALM Artifactory Internal
+          # AgentDemands: Agent.ComputerName
