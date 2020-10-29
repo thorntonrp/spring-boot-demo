@@ -1,18 +1,13 @@
-# ALM Team Azure example pipeline that pulls in the maven build template from the devops_pipelines repository
-# Copy this file to your repository and fill in the required parameters, AppName and Portfolio
-# Commit the changes and trigger a new build
-
 trigger:
   - master
+  - develop
 
-# Repo: devops_pipelines/templates
-# File: azure-pipelines.yml
 resources:
   repositories:
     - repository: almtemplates
       type: git
       name: ALM/devops_pipelines
-    - repository: almtemplates_dev
+    - repository: stacktemplates
       type: git
       name: Stack Team/devops_pipelines.robert.thornton
 
@@ -20,25 +15,14 @@ resources:
 stages:
   - stage: Build
     jobs:
-      - template: templates/java-mvn-build.yml@almtemplates_dev
+      - template: templates/java-mvn-build.yml@stacktemplates
         parameters:
-          # Always
           AppName: spring-boot-demo
           Portfolio: ESM
-          # Often
           JavaVersion: 11
           MavenPomFile: pom.kts
           MavenPomPath: .
           MavenGoal: clean verify
-          #RunMavenSonarScan: true
-          #DownloadSecureFile: false
-          #RunArtifactoryUpload: true
-          # Rarely
-          # RunDependencyUpdate: false
-          # targetResolveReleaseRepo: mvn
-          # targetResolveSnapshotRepo: mvn
-          # targetDeployReleaseRepo: mvn-local-ics-releases
-          # targetDeploySnapshotRepo: mvn-local-ics-snapshots
-          # SonarServiceConnection: ALM Sonar
-          # ArtifactoryServiceConnection: ALM Artifactory Internal
-          # AgentDemands: Agent.ComputerName
+          RunMavenSonarScan: true
+          DownloadSecureFile: false
+          RunArtifactoryUpload: true
